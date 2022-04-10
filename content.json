@@ -1,0 +1,35 @@
+{
+ "address": "1Bd2mgwbxQAHdHnWyDD7URBLDuwxxybw8t",
+ "address_index": 68452762,
+ "background-color": "#FFF",
+ "cloneable": true,
+ "description": "This zite lists trackers that can be reached via Yggdrasil.",
+ "files": {
+  "css/normalize.css": {
+   "sha512": "996fd9fb75f59a913ee665badeb6b9ad407e33a43ebbf183e632bd4872328aee",
+   "size": 7213
+  },
+  "index.html": {
+   "sha512": "a33a1f611cdc8151b132647e375489d803fa2e3fd76939d87c3e9d5a656cd0ce",
+   "size": 4234
+  },
+  "js/ZeroFrame.js": {
+   "sha512": "76a24d167e8a4c45f7d1b315efe31e4b4ccb19efef011c080994c94045ff4c93",
+   "size": 5088
+  },
+  "yggdrasil_tracker.txt": {
+   "sha512": "be7609df5524ff0c11ce5c9b684a34fe5a2536b5f84accdd652b3b0617e71660",
+   "size": 161
+  }
+ },
+ "ignore": "",
+ "inner_path": "content.json",
+ "modified": 1649611093,
+ "postmessage_nonce_security": true,
+ "signers_sign": "G4YXD4M0zeOGNPxnuXpskcFvgRO1eafiCzWF33ubUR1WdUl7yTqBQHuTj1TVfQ5iBSkwTRIvQeAiIN6USof7P58=",
+ "signs": {"1Bd2mgwbxQAHdHnWyDD7URBLDuwxxybw8t": "HJwA1fV2BYjDmjpnI9WC4P8a68QI77qtABUmyTVlZ8N9KFlFeiE0caRI7FbHKZLNoZZZedtnoKhc4dXv2KFiums="},
+ "signs_required": 1,
+ "title": "Yggdrasil trackers",
+ "viewport": "width=device-width, initial-scale=1.0",
+ "zeronet_version": "0.7.9"
+}

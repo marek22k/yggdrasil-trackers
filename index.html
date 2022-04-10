@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        
+        <title>Yggdrasil trackers</title>
+        
+        <base href="" target="_top" id="base">
+        <script>base.href = document.location.href.replace("/media", "").replace("index.html", "").replace(/[&?]wrapper=False/, "").replace(/[&?]wrapper_nonce=[A-Za-z0-9]+/, "")</script>
+    
+        <link rel="stylesheet" href="css/normalize.css">
+        
+        <style>
+            .tracker_red {
+                color: red;
+            }
+            .tracker_green {
+                color: green;
+            }
+            #tracker_location {
+                margin: 5px;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Yggdrasil trackers</h1>
+        
+        <div>
+            <p>
+                Zeronet needs Bittorrent Tracker to find other peers hosting a
+                zite. In order for Zeronet to remain decentralized, there must
+                be a large number of trackers. This zite lists trackers that can
+                be reached via Yggdrasil.
+            </p>
+            <blockquote cite="https://yggdrasil-network.github.io/">
+                Yggdrasil is an overlay network implementation of a new routing
+                scheme for mesh networks. It is designed to be a future-proof
+                decentralised alternative to the structured routing protocols
+                commonly used today on the Internet and other networks.
+            </blockquote>
+            
+            <p>
+                To use these trackers, Yggdrasil must be installed and the
+                following line must be inserted under
+                <a href="http://127.0.0.1:43110/Config" target="_blank">ZeroNet
+                    config</a> -> Trackers files.<br>
+                <code id="tracker_location">{data_dir}/1Bd2mgwbxQAHdHnWyDD7URBLDuwxxybw8t/yggdrasil_trackers.txt</code><button onclick="copyText(document.getElementById('tracker_location').innerHTML)">Copy</button><br>
+                With Zeronet Mobile, the "Additional BitTorrent Trackers" option must also be disabled.
+            </p>
+        </div>
+        
+        <div>
+            <h2>Links</h2>
+            <ul>
+                <li>Yggdrasil - <a href="https://yggdrasil-network.github.io/" target="_blank">https://yggdrasil-network.github.io/</a></li>
+                <li>Another zite that has a tracker list - <a href="/15CEFKBRHFfAP9rmL6hhLmHoXrrgmw4B5o/" target="_blank">Syncronite</a></li>
+            </ul>
+        </div>
+        
+        <div>
+            <h2>Current trackers</h2>
+            These trackers help with finding peers for this zite:<br>
+            <ul id="tracker_list">
+
+            </ul>
+        </div>
+        
+        <script src="js/ZeroFrame.js"></script>
+        <script>
+            const zf = new ZeroFrame();
+            
+            function htmlEncode(str) {
+                return String(str).replace(/[^\w. ]/gi, (c) => {
+                    return '&#' + c.charCodeAt(0) + ';';
+                });
+            }
+            
+            function copyText(text) {
+                navigator.clipboard.writeText(text).then((success) => {
+                    zf.cmd("wrapperNotification", ["done", "Copied.", 3500]);
+                }, (error) => {
+                    zf.cmd("wrapperNotification", ["error", "Error - " + error]);
+                });
+
+                
+            }
+            
+            function updateTrackers() {
+                zf.cmd("announcerInfo", [], (info) => {
+                    const html_list = document.getElementById("tracker_list");
+                    html_list.innerHTML = "";
+                    Object.keys(info.stats).forEach((tracker) => {
+                        let html_class = (info.stats[tracker].status === "announced" ? "green" : "red");
+                        html_list.innerHTML += "<li>" + htmlEncode(tracker) + " - <strong class=\"tracker_" + html_class + "\">" + htmlEncode(info.stats[tracker].status) + "</strong></li>\n";
+                    });
+                });
+            }
+            
+            window.setInterval(updateTrackers, 10000);
+            updateTrackers();
+            
+        </script>
+
+    </body>
+</html>
