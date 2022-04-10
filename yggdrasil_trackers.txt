@@ -1,0 +1,3 @@
+http://tracker.y.neilalexander.eu:6969/announce
+http://yggtracker.i2p.rocks:7777/announce
+udp://yggtracker.i2p.rocks:7777/announce
